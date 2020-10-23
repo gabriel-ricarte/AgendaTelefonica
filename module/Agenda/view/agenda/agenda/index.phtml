@@ -1,0 +1,34 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'Meus contatos';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('agenda', ['action' => 'add']) ?>">Add new album</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Nome</th>
+    <th>Endereco</th>
+    <th>Fone Residencial</th>
+    <th>Fone Comercial</th>
+    <th>Contatos</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($contatos as $contato) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($contato->nome).$this->escapeHtml($contato->sobrenome)  ?></td>
+        <td><?= $this->escapeHtml($contato->endereco).', '.$this->escapeHtml($contato->bairro).','.$this->escapeHtml($contato->cidade) ?></td>
+        <td><?= $this->escapeHtml($contato->fone_residencial)  ?></td>
+        <td><?= $this->escapeHtml($contato->fone_comercial)  ?></td>
+        <td><?= $this->escapeHtml($contato->celular)  ?></td>
+        <td>
+            <a href="<?= $this->url('agenda', ['action' => 'edit', 'id' => $contato->id]) ?>">Editar</a>
+            <a href="<?= $this->url('agenda', ['action' => 'delete', 'id' => $contato->id]) ?>">Deletar</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>
