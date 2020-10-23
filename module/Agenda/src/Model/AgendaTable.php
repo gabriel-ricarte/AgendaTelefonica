@@ -54,7 +54,7 @@ class AgendaTable
         }
 
         try {
-            $this->getAlbum($id);
+            $this->getAgenda($id);
         } catch (RuntimeException $e) {
             throw new RuntimeException(sprintf(
                 'Id  %d; inexistente',

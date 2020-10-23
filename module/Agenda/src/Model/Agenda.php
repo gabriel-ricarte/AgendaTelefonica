@@ -21,6 +21,7 @@ class Agenda
     public $fone_residencial;
     public $fone_comercial;
     public $celular;
+
     public function exchangeArray(array $data)
     {
     	$this->id     = !empty($data['id']) ? $data['id'] : null;
@@ -32,6 +33,20 @@ class Agenda
     	$this->fone_residencial  = !empty($data['fone_residencial']) ? $data['fone_residencial'] : null;
     	$this->fone_comercial = !empty($data['fone_comercial']) ? $data['fone_comercial'] : null;
     	$this->celular  = !empty($data['celular']) ? $data['celular'] : null;
+    }
+        public function getArrayCopy()
+    {
+        return [
+            'id'     => $this->id,
+            'nome' => $this->nome,
+            'sobrenome'  => $this->sobrenome,
+            'endereco'  => $this->endereco,
+            'bairro'  => $this->bairro,
+            'cidade'  => $this->cidade,
+            'fone_residencial'  => $this->fone_residencial,
+            'fone_comercial'  => $this->fone_comercial,
+            'celular'  => $this->celular,
+        ];
     }
 
      public function setInputFilter(InputFilterInterface $inputFilter)

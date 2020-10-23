@@ -53,6 +53,39 @@ class AgendaController extends AbstractActionController
 
     public function editAction()
     {
+        $id = (int) $this->params()->fromRoute('id', 0);
+
+        if (0 === $id) {
+            return $this->redirect()->toRoute('agenda', ['action' => 'add']);
+        }
+
+        try {
+            $agenda = $this->table->getAgenda($id);
+        } catch (\Exception $e) {
+            return $this->redirect()->toRoute('agenda', ['action' => 'index']);
+        }
+
+        $form = new AgendaForm();
+        $form->bind($agenda);
+        $form->get('submit')->setAttribute('value', 'Edit');
+
+        $request = $this->getRequest();
+        $viewData = ['id' => $id, 'form' => $form];
+
+        if (! $request->isPost()) {
+            return $viewData;
+        }
+
+        //$form->setInputFilter($agenda->getInputFilter());
+        $form->setData($request->getPost());
+
+        if (! $form->isValid()) {
+            return $viewData;
+        }
+       // dd($agenda);
+        $this->table->saveAgenda($agenda);
+
+        return $this->redirect()->toRoute('agenda', ['action' => 'index']);
     }
 
     public function deleteAction()
