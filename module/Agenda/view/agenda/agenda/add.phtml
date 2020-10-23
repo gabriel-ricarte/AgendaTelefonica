@@ -1,0 +1,92 @@
+<?php
+$title = 'Add novo contato';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+// This provides a default CSS class and placeholder text for the title element:
+$nome = $form->get('nome');
+$nome->setAttribute('class', 'form-control');
+$nome->setAttribute('placeholder', 'Nome');
+
+$sobrenome = $form->get('sobrenome');
+$sobrenome->setAttribute('class', 'form-control');
+$sobrenome->setAttribute('placeholder', 'Sobrenome');
+
+$endereco = $form->get('endereco');
+$endereco->setAttribute('class', 'form-control');
+$endereco->setAttribute('placeholder', 'endereco');
+
+$bairro = $form->get('bairro');
+$bairro->setAttribute('class', 'form-control');
+$bairro->setAttribute('placeholder', 'bairro');
+
+$cidade = $form->get('cidade');
+$cidade->setAttribute('class', 'form-control');
+$cidade->setAttribute('placeholder', 'cidade');
+
+$fone_residencial = $form->get('fone_residencial');
+$fone_residencial->setAttribute('class', 'form-control');
+$fone_residencial->setAttribute('placeholder', 'fone_residencial');
+
+$fone_comercial = $form->get('fone_comercial');
+$fone_comercial->setAttribute('class', 'form-control');
+$fone_comercial->setAttribute('placeholder', 'fone_comercial');
+
+$celular = $form->get('celular');
+$celular->setAttribute('class', 'form-control');
+$celular->setAttribute('placeholder', 'celular');
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('agenda', ['action' => 'add']));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+
+<div class="form-group">
+    <?= $this->formLabel($nome) ?>
+    <?= $this->formElement($nome) ?>
+    <?= $this->formElementErrors()->render($nome, ['class' => 'help-block']) ?>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($sobrenome) ?>
+    <?= $this->formElement($sobrenome) ?>
+    <?= $this->formElementErrors()->render($sobrenome, ['class' => 'help-block']) ?>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($endereco) ?>
+    <?= $this->formElement($endereco) ?>
+    <?= $this->formElementErrors()->render($endereco, ['class' => 'help-block']) ?>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($bairro) ?>
+    <?= $this->formElement($bairro) ?>
+    <?= $this->formElementErrors()->render($bairro, ['class' => 'help-block']) ?>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($cidade) ?>
+    <?= $this->formElement($cidade) ?>
+    <?= $this->formElementErrors()->render($cidade, ['class' => 'help-block']) ?>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($fone_residencial) ?>
+    <?= $this->formElement($fone_residencial) ?>
+    <?= $this->formElementErrors()->render($fone_residencial, ['class' => 'help-block']) ?>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($fone_comercial) ?>
+    <?= $this->formElement($fone_comercial) ?>
+    <?= $this->formElementErrors()->render($fone_comercial, ['class' => 'help-block']) ?>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($celular) ?>
+    <?= $this->formElement($celular) ?>
+    <?= $this->formElementErrors()->render($celular, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

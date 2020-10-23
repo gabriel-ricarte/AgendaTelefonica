@@ -57,6 +57,20 @@ class AgendaForm extends Form
 			],
 		]);
 		$this->add([
+			'name' => 'fone_residencial',
+			'type' => 'text',
+			'options' => [
+				'label' => 'Telefone Residencial',
+			],
+		]);
+		$this->add([
+			'name' => 'fone_comercial',
+			'type' => 'text',
+			'options' => [
+				'label' => 'Telefone Comercial',
+			],
+		]);
+		$this->add([
 			'name' => 'submit',
 			'type' => 'submit',
 			'attributes' => [

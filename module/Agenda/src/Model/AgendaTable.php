@@ -15,7 +15,6 @@ class AgendaTable
 
     public function fetchAll()
     {
-    	//dd($this->tableGateway->select());
         return $this->tableGateway->select();
     }
 
@@ -26,7 +25,7 @@ class AgendaTable
         $row = $rowset->current();
         if (! $row) {
             throw new RuntimeException(sprintf(
-                'Could not find row with identifier %d',
+                'Linha não encontrada %d',
                 $id
             ));
         }
@@ -34,14 +33,20 @@ class AgendaTable
         return $row;
     }
 
-    public function saveAgenda(Agenda $album)
+    public function saveAgenda(Agenda $agenda)
     {
         $data = [
-            'artist' => $album->artist,
-            'title'  => $album->title,
+            'nome' => $agenda->nome,
+            'sobrenome'  => $agenda->sobrenome,
+            'endereco'  => $agenda->endereco,
+            'bairro'  => $agenda->bairro,
+            'cidade'  => $agenda->cidade,
+            'fone_residencial'  => $agenda->fone_residencial,
+            'fone_comercial'  => $agenda->fone_comercial,
+            'celular'  => $agenda->celular
         ];
 
-        $id = (int) $album->id;
+        $id = (int) $agenda->id;
 
         if ($id === 0) {
             $this->tableGateway->insert($data);
@@ -52,7 +57,7 @@ class AgendaTable
             $this->getAlbum($id);
         } catch (RuntimeException $e) {
             throw new RuntimeException(sprintf(
-                'Cannot update album with identifier %d; does not exist',
+                'Id  %d; inexistente',
                 $id
             ));
         }

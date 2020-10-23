@@ -11,7 +11,9 @@ class AgendaController extends AbstractActionController
 {
 	private $table;
 
-    // Add this constructor:
+    //controller da agenda com as funções do crud de listar, salvar, editar e excluir 
+    //pela documentação escassa não foi possivel fazer o projeto em zend 1
+    //maior parte das paginas de documentação estavam desativadas
     public function __construct(AgendaTable $table)
     {
         $this->table = $table;
@@ -26,7 +28,7 @@ class AgendaController extends AbstractActionController
 
     public function addAction()
     {
-        $form = new AlbumForm();
+        $form = new AgendaForm();
         $form->get('submit')->setValue('Add');
 
         $request = $this->getRequest();
@@ -34,19 +36,19 @@ class AgendaController extends AbstractActionController
         if (! $request->isPost()) {
             return ['form' => $form];
         }
-
-        $album = new Album();
-        $form->setInputFilter($album->getInputFilter());
+        //dd($request);
+        $agenda = new Agenda();
+        //$form->setInputFilter($agenda->getInputFilter());
         $form->setData($request->getPost());
-
+        //dd($request);
         if (! $form->isValid()) {
             return ['form' => $form];
         }
 
-        $album->exchangeArray($form->getData());
-        $this->table->saveAlbum($album);
-        return $this->redirect()->toRoute('album');
-    }
+        $agenda->exchangeArray($form->getData());
+        $this->table->saveAgenda($agenda);
+        return $this->redirect()->toRoute('agenda');
+    
     }
 
     public function editAction()

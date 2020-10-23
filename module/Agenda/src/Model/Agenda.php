@@ -44,9 +44,9 @@ class Agenda
 
     public function getInputFilter()
     {
-        if ($this->inputFilter) {
-            return $this->inputFilter;
-        }
+        // if ($this->inputFilter) {
+        //     return $this->inputFilter;
+        // }
 
         $inputFilter = new InputFilter();
 
@@ -183,13 +183,6 @@ class Agenda
                         'max' => 20,
                     ],
                 ],
-            ],
-        ]);
-        $inputFilter->add([
-            'name' => 'celular',
-            'required' => true,
-            'filters' => [
-                ['name' => ToInt::class],
             ],
         ]);
         $this->inputFilter = $inputFilter;
